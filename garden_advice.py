@@ -15,7 +15,13 @@ Features:
 import datetime
 
 
-# Version 2.0 - Added user input and validation
+# ---------------------------------------------------------------------------
+# App Constants
+# ---------------------------------------------------------------------------
+
+APP_NAME = "Garden Advice App"
+VERSION = "2.0"
+SEPARATOR = "=" * 45
 
 
 # --- Data ---
@@ -27,7 +33,6 @@ MONTH_TO_SEASON = {
     9: "Autumn", 10: "Autumn", 11: "Autumn"
 }
 
-# Advice stored in dictionaries for multiple seasons and plant types
 SEASON_ADVICE = {
     "summer": "Water your plants regularly and provide some shade.",
     "winter": "Protect your plants from frost with covers.",
@@ -41,6 +46,7 @@ PLANT_ADVICE = {
     "herb": "Ensure herbs get plenty of sunlight and good drainage.",
     "tree": "Mulch around the base to retain moisture and suppress weeds."
 }
+
 SEASONAL_ADVICE = {
     "Spring": [
         "Start sowing seeds indoors for tomatoes, peppers and aubergines.",
@@ -71,6 +77,7 @@ SEASONAL_ADVICE = {
         "Feed the birds — they will repay you by eating pests in spring."
     ]
 }
+
 
 # --- Functions ---
 
@@ -164,11 +171,10 @@ def main():
     Collects user input, displays personalised advice, and shows
     seasonal tips based on the current month.
     """
-    print("=" * 45)
-    print("        Welcome to the Garden Advice App")
-    print("=" * 45)
+    print(SEPARATOR)
+    print(f"        Welcome to the {APP_NAME} v{VERSION}")
+    print(SEPARATOR)
 
-    # Get user input with validation
     valid_seasons = list(SEASON_ADVICE.keys())
     valid_plants = list(PLANT_ADVICE.keys())
 
@@ -181,14 +187,12 @@ def main():
         valid_plants
     )
 
-    # Build and display personalised advice
     advice = get_season_advice(season)
     advice += "\n  " + get_plant_advice(plant_type)
 
     print(f"\n--- Personalised Advice for {season.capitalize()} / {plant_type.capitalize()} ---")
     print(f"  {advice}")
 
-    # Auto-detect current season and display monthly tips
     current_month = datetime.datetime.now().month
     current_season = get_season_from_month(current_month)
     tips = get_monthly_advice(current_season)
@@ -201,4 +205,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-# Version 2.0 - Added user input and validation
