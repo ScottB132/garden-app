@@ -10,6 +10,10 @@ Features:
 - Modular functions with docstrings
 - Input validation for all user inputs
 - Automatic season detection based on current month
+
+TODO: Add support for additional languages (internationalisation).
+TODO: Add a graphical user interface (GUI) using tkinter or a web framework.
+TODO: Load advice data from an external JSON or CSV file instead of hardcoding.
 """
 
 import datetime
@@ -26,6 +30,7 @@ SEPARATOR = "=" * 45
 
 # --- Data ---
 
+# TODO: Consider loading MONTH_TO_SEASON from a config file for flexibility.
 MONTH_TO_SEASON = {
     12: "Winter", 1: "Winter", 2: "Winter",
     3: "Spring", 4: "Spring", 5: "Spring",
@@ -33,6 +38,7 @@ MONTH_TO_SEASON = {
     9: "Autumn", 10: "Autumn", 11: "Autumn"
 }
 
+# TODO: Expand SEASON_ADVICE to include more detailed advice per season.
 SEASON_ADVICE = {
     "summer": "Water your plants regularly and provide some shade.",
     "winter": "Protect your plants from frost with covers.",
@@ -40,6 +46,7 @@ SEASON_ADVICE = {
     "autumn": "Plant spring bulbs and rake up fallen leaves for compost."
 }
 
+# TODO: Add more plant types such as 'shrub', 'cactus', 'fern'.
 PLANT_ADVICE = {
     "flower": "Use fertiliser to encourage blooms.",
     "vegetable": "Keep an eye out for pests!",
@@ -47,6 +54,7 @@ PLANT_ADVICE = {
     "tree": "Mulch around the base to retain moisture and suppress weeds."
 }
 
+# TODO: Add more tips per season to provide richer advice.
 SEASONAL_ADVICE = {
     "Spring": [
         "Start sowing seeds indoors for tomatoes, peppers and aubergines.",
@@ -92,6 +100,9 @@ def get_user_input(prompt, valid_options):
 
     Returns:
         str: A validated, lowercase string matching one of the valid options.
+
+    TODO: Add support for partial matching (e.g. 'sum' matching 'summer').
+    TODO: Add a maximum number of retries before exiting gracefully.
     """
     while True:
         user_input = input(prompt).strip().lower()
@@ -109,6 +120,8 @@ def get_season_advice(season):
 
     Returns:
         str: Advice string for the season, or a default message if not found.
+
+    TODO: Return a list of advice items instead of a single string.
     """
     return SEASON_ADVICE.get(season, "No advice available for this season.")
 
@@ -122,6 +135,8 @@ def get_plant_advice(plant_type):
 
     Returns:
         str: Advice string for the plant type, or a default message if not found.
+
+    TODO: Combine season and plant type to give more specific combined advice.
     """
     return PLANT_ADVICE.get(plant_type, "No advice available for this plant type.")
 
@@ -135,6 +150,8 @@ def get_season_from_month(month):
 
     Returns:
         str: The corresponding season name, or 'Unknown' if the month is invalid.
+
+    TODO: Account for Southern Hemisphere seasons (reversed from Northern).
     """
     if not isinstance(month, int) or month < 1 or month > 12:
         return "Unknown"
@@ -150,6 +167,8 @@ def get_monthly_advice(season):
 
     Returns:
         list: A list of tip strings for the season.
+
+    TODO: Allow filtering tips by difficulty level (beginner, intermediate, expert).
     """
     return SEASONAL_ADVICE.get(season, ["No advice available for this season."])
 
@@ -160,6 +179,8 @@ def display_tips(tips):
 
     Parameters:
         tips (list): A list of tip strings to display.
+
+    TODO: Add colour formatting to the terminal output using the colorama library.
     """
     for i, tip in enumerate(tips, 1):
         print(f"  {i}. {tip}")
@@ -170,6 +191,10 @@ def main():
     Main entry point for the Garden Advice App.
     Collects user input, displays personalised advice, and shows
     seasonal tips based on the current month.
+
+    TODO: Add a loop to allow the user to get advice multiple times
+          without restarting the app.
+    TODO: Add an option to save the advice output to a text file.
     """
     print(SEPARATOR)
     print(f"        Welcome to the {APP_NAME} v{VERSION}")
