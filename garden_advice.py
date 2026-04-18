@@ -18,7 +18,6 @@ TODO: Load advice data from an external JSON or CSV file instead of hardcoding.
 
 import datetime
 
-
 # ---------------------------------------------------------------------------
 # App Constants
 # ---------------------------------------------------------------------------
@@ -26,7 +25,6 @@ import datetime
 APP_NAME = "Garden Advice App"
 VERSION = "2.0"
 SEPARATOR = "=" * 45
-
 
 # --- Data ---
 
@@ -226,7 +224,6 @@ def main():
     display_tips(tips)
 
     print("\nHappy gardening!")
-
 
 if __name__ == "__main__":
     main()
